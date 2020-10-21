@@ -1,9 +1,11 @@
-import 'Server.dart';
+import 'package:DockerApp/Server.dart';
+
+import 'userpage.dart';
 import 'package:bmnav/bmnav.dart';
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -209,9 +211,17 @@ class _TerminalState extends State<Terminal> {
               onSelectColor: Colors.blueAccent),
           items: [
             BottomNavItem(Icons.home, label: null),
-            BottomNavItem(Icons.refresh, label: null),
+            BottomNavItem(Icons.laptop_windows, label: null),
             BottomNavItem(Icons.settings, label: null),
           ],
+          onTap: (i) {
+            print(i);
+            if (i == 2) {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return userinfo();
+              }));
+            }
+          },
         ),
         body: body,
       ),
