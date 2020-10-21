@@ -1,3 +1,4 @@
+import 'Server.dart';
 import 'package:bmnav/bmnav.dart';
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class Terminal extends StatefulWidget {
 }
 
 class _TerminalState extends State<Terminal> {
-  var IP = "192.168.43.56";
+  //var IP = "192.168.43.56";
   var cmd;
   // var uid = FirebaseAuth.instance;
   FirebaseFirestore fs1 = FirebaseFirestore.instance;
@@ -23,7 +24,7 @@ class _TerminalState extends State<Terminal> {
     ScrollController controller = ScrollController();
 
     APICommand(cmd) async {
-      var url = "http://$IP/cgi-bin/command.py?x=${cmd}";
+      var url = "http://${Server.IP}/cgi-bin/command.py?x=${cmd}";
       var r = await http.get(url);
       setState(() {
         output = r.body;

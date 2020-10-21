@@ -1,21 +1,35 @@
-import 'package:Terminal/userpage.dart';
-
-import 'AuthPage.dart';
-import 'package:Terminal/terminal.dart';
+import 'package:DockerApp/Animation/AnimatedSpash.dart';
+import 'package:splashscreen/splashscreen.dart';
 import 'AuthPage.dart';
 import 'userinfo.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
   runApp(App());
 }
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: userinfo());
+    FlutterStatusbarcolor.setNavigationBarColor(Colors.black);
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        //home: Splash(),
+        home: AnimatedSplashScreen(
+            function: () async {},
+            splashIconSize: double.infinity,
+            duration: 3000,
+            splash: Splash(),
+            nextScreen: Auth(),
+            splashTransition: null,
+            //pageTransitionType: PageTransitionType.leftToRightWithFade,
+            backgroundColor: Colors.grey.shade900));
   }
 }
